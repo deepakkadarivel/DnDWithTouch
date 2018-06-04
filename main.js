@@ -35,6 +35,7 @@ window.onload = function () {
         _(element_id).removeAttribute("draggable")
         _(element_id).style.cursor = "default";
         droppedIn = true;
+        _('app_status').innerHTML = "You droped " + element_id + " into drop zone";
     }
 
     // Draggable element functionality
@@ -113,9 +114,15 @@ window.onload = function () {
                 dropZone.appendChild(e.target);
                 e.target.style.position = "initial";
                 droppedIn = true;
+                _('app_status').innerHTML = "You droped " + e
+                    .target
+                    .getAttribute('id') + " into drop zone";
             } else {
                 e.target.style.left = originalX;
                 e.target.style.top = originalY;
+                _('app_status').innerHTML = "You let the " + e
+                    .target
+                    .getAttribute('id') + " go.";
             }
         }
     }
