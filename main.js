@@ -15,14 +15,17 @@ window.onload = function () {
     var object3 = _('object3');
 
     object1.addEventListener('dragstart', handleDragStart, false);
+    object1.addEventListener('dragend', handleDragEnd, false);
     object1.addEventListener('touchstart', handleTouchStart, false);
     object1.addEventListener('touchmove', handleTouchMove, false);
 
     object2.addEventListener('dragstart', handleDragStart, false);
+    object2.addEventListener('dragend', handleDragEnd, false);
     object2.addEventListener('touchstart', handleTouchStart, false);
     object2.addEventListener('touchmove', handleTouchMove, false);
 
     object3.addEventListener('dragstart', handleDragStart, false);
+    object3.addEventListener('dragend', handleDragEnd, false);
     object3.addEventListener('touchstart', handleTouchStart, false);
     object3.addEventListener('touchmove', handleTouchMove, false);
 
@@ -34,6 +37,13 @@ window.onload = function () {
         e
             .dataTransfer
             .setData("text", e.target.getAttribute('id'));
+    }
+
+    function handleDragEnd(e) {
+        if (droppedIn == false) {
+            _('app_status').innerHTML = "You let the " + e.target.getAttribute('id') + " go.";
+        }
+        droppedIn = false;
     }
 
     function handleTouchStart(e) {
@@ -55,6 +65,7 @@ window.onload = function () {
 
     dropZone.addEventListener('dragenter', handleDragEnter, false);
     dropZone.addEventListener('dragleave', handleDragLeave, false);
+    dropZone.addEventListener('drop', handleDragDrop, false);
 
     function handleDragEnter(e) {
         _('app_status').innerHTML = "You are dragging over the " + e
@@ -66,5 +77,14 @@ window.onload = function () {
         _('app_status').innerHTML = "You left the " + e
             .target
             .getAttribute('id');
+    }
+
+    function handleDragDrop(e) {
+        e.preventDefault();
+        var element_id = e.dataTransfer.getData("text");
+        e.target.appendChild(_(element_id));
+        _(element_id).removeAttribute("draggable")
+        _(element_id).style.cursor = "default";
+        droppedIn = true;
     }
 }
