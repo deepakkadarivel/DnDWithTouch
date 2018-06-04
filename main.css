@@ -1,3 +1,8 @@
+body {
+    position: fixed;
+    height: 1vh;
+}
+
 #drop_zone {
     background-color: #eee;
     border: #999 1px solid ;
