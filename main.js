@@ -43,6 +43,8 @@ window.onload = function () {
     var object3 = _('object3');
 
     var activeEvent = '';
+    var originalX = '';
+    var originalY = '';
 
     object1.addEventListener('dragstart', handleDragStart, false);
     object1.addEventListener('dragend', handleDragEnd, false);
@@ -85,6 +87,8 @@ window.onload = function () {
         _('app_status').innerHTML = "Touch start with element " + e
             .target
             .getAttribute('id');
+        originalX = (e.target.offsetLeft - 10) + "px";
+        originalY = (e.target.offsetTop - 10) + "px";
         activeEvent = 'start';
     }
 
@@ -93,9 +97,9 @@ window.onload = function () {
         var pageX = (touchLocation.pageX - 50) + "px";
         var pageY = (touchLocation.pageY - 50) + "px";
         _('app_status').innerHTML = "Touch x " + pageX + " Touch y " + pageY;
-        event.target.style.position = "absolute";
-        event.target.style.left = pageX;
-        event.target.style.top = pageY;
+        e.target.style.position = "absolute";
+        e.target.style.left = pageX;
+        e.target.style.top = pageY;
         activeEvent = 'move';
     }
 
@@ -109,6 +113,9 @@ window.onload = function () {
                 dropZone.appendChild(e.target);
                 e.target.style.position = "initial";
                 droppedIn = true;
+            } else {
+                e.target.style.left = originalX;
+                e.target.style.top = originalY;
             }
         }
     }
