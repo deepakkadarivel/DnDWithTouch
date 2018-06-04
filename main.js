@@ -42,6 +42,8 @@ window.onload = function () {
     var object2 = _('object2');
     var object3 = _('object3');
 
+    var activeEvent = '';
+
     object1.addEventListener('dragstart', handleDragStart, false);
     object1.addEventListener('dragend', handleDragEnd, false);
     object1.addEventListener('touchstart', handleTouchStart, false);
@@ -83,6 +85,7 @@ window.onload = function () {
         _('app_status').innerHTML = "Touch start with element " + e
             .target
             .getAttribute('id');
+        activeEvent = 'start';
     }
 
     function handleTouchMove(e) {
@@ -93,20 +96,23 @@ window.onload = function () {
         event.target.style.position = "absolute";
         event.target.style.left = pageX;
         event.target.style.top = pageY;
+        activeEvent = 'move';
     }
 
     function handleTouchEnd(e) {
         e.preventDefault();
-        var pageX = (parseInt(e.target.style.left) - 50);
-        var pageY = (parseInt(e.target.style.left) - 50);
+        if (activeEvent === 'move') {
+            var pageX = (parseInt(e.target.style.left) - 50);
+            var pageY = (parseInt(e.target.style.left) - 50);
 
-        if (detectTouchEnd(dropZone.offsetLeft, dropZone.offsetTop, pageX, pageY, dropZone.offsetWidth, dropZone.offsetHeight)) {
-            dropZone.appendChild(e.target);
-            e
-                .target
-                .removeAttribute("draggable")
-            e.target.style.cursor = "default";
-            droppedIn = true;
+            if (detectTouchEnd(dropZone.offsetLeft, dropZone.offsetTop, pageX, pageY, dropZone.offsetWidth, dropZone.offsetHeight)) {
+                dropZone.appendChild(e.target);
+                e
+                    .target
+                    .removeAttribute("draggable")
+                e.target.style.cursor = "default";
+                droppedIn = true;
+            }
         }
     }
 
