@@ -13,13 +13,13 @@
 <body>
     <h2 id="app_status"></h2>
     <h1>Drop Zone</h1>
-    <div id="drop_zone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)">
-        <div id="object1" class="objects" draggable="true" ondragend="drag_end(event)">Object 1</div>
-        <div id="object2" class="objects" draggable="true" ondragend="drag_end(event)">Object 2</div>
-        <div id="object3" class="objects" draggable="true" ondragend="drag_end(event)">Object 3</div>
-        <hr>
-        <button onclick="readDropZone()">Get objects data</button>
-    </div>
+    <div id="drop_zone" ondrop="drag_drop(event)" ondragover="return false"></div>
+    <div id="object1" class="objects" draggable="true" ondragend="drag_end(event)">Object 1</div>
+    <div id="object2" class="objects" draggable="true" ondragend="drag_end(event)">Object 2</div>
+    <div id="object3" class="objects" draggable="true" ondragend="drag_end(event)">Object 3</div>
+    <hr>
+    <button onclick="readDropZone()">Get objects data</button>
+
 </body>
 
 </html>
