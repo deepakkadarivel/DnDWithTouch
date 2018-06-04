@@ -107,10 +107,7 @@ window.onload = function () {
 
             if (detectTouchEnd(dropZone.offsetLeft, dropZone.offsetTop, pageX, pageY, dropZone.offsetWidth, dropZone.offsetHeight)) {
                 dropZone.appendChild(e.target);
-                e
-                    .target
-                    .removeAttribute("draggable")
-                e.target.style.cursor = "default";
+                e.target.style.position = "initial";
                 droppedIn = true;
             }
         }
