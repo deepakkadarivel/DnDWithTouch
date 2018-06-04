@@ -103,7 +103,7 @@ window.onload = function () {
         e.preventDefault();
         if (activeEvent === 'move') {
             var pageX = (parseInt(e.target.style.left) - 50);
-            var pageY = (parseInt(e.target.style.left) - 50);
+            var pageY = (parseInt(e.target.style.top) - 50);
 
             if (detectTouchEnd(dropZone.offsetLeft, dropZone.offsetTop, pageX, pageY, dropZone.offsetWidth, dropZone.offsetHeight)) {
                 dropZone.appendChild(e.target);
